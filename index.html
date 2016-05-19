@@ -9,13 +9,11 @@
 <script type="text/javascript">
 document.addEventListener("deviceready", init, false);
 function init() {
-	alert('init');
 	document.querySelector("#startfblogin").addEventListener("touchend", startfblogin, false);
 	//resultDiv = document.querySelector("#results");
 }
 function startfblogin()
 {
-	alert('start');
 	facebookConnectPlugin.login(["public_profile"],
 		fbLoginSuccess,
 		function (error) { alert("" + error) }
@@ -37,10 +35,77 @@ var fbLoginSuccess = function (userData) {
         }
     );
 };
+app.initialize();
+  function login() {
+    window.plugins.googleplus.login(
+        {
+          'iOSApiKey': '6535513912-uvpf249ak7avodois85tkjmh2lc2j952.apps.googleusercontent.com'
+        },
+        function (obj) {
+          document.querySelector("#image").src = obj.imageUrl;
+          document.querySelector("#image").style.visibility = 'visible';
+          document.querySelector("#feedback").innerHTML = "Hi, " + obj.displayName + ", " + obj.email;
+        },
+        function (msg) {
+          document.querySelector("#feedback").innerHTML = "error: " + msg;
+        }
+    );
+  }
+  function trySilentLogin() {
+    window.plugins.googleplus.trySilentLogin(
+        {
+          'iOSApiKey': '6535513912-uvpf249ak7avodois85tkjmh2lc2j952.apps.googleusercontent.com'
+        },
+        function (obj) {
+          document.querySelector("#image").src = obj.imageUrl;
+          document.querySelector("#image").style.visibility = 'visible';
+          document.querySelector("#feedback").innerHTML = "Silent hi, " + obj.displayName + ", " + obj.email;
+        },
+        function (msg) {
+          document.querySelector("#feedback").innerHTML = "error: " + msg;
+        }
+    );
+  }
+  function logout() {
+    window.plugins.googleplus.logout(
+        function (msg) {
+          document.querySelector("#image").style.visibility = 'hidden';
+          document.querySelector("#feedback").innerHTML = msg;
+        }
+    );
+  }
+  function disconnect() {
+    window.plugins.googleplus.disconnect(
+        function (msg) {
+          document.querySelector("#image").style.visibility = 'hidden';
+          document.querySelector("#feedback").innerHTML = msg;
+        }
+    );
+  }
+  window.onerror = function(what, line, file) {
+    alert(what + '; ' + line + '; ' + file);
+  };
+  function handleOpenURL (url) {
+    document.querySelector("#feedback").innerHTML = "App was opened by URL: " + url;
+  }
 </script>
 <body>
 <div class="container maincontainer">
   <a href="javascript:;" id="startfblogin">Facebook</a>
+  <div id="deviceready" class="blink">
+    <p class="event listening">Connecting to Device</p>
+    <p class="event received">Device is Ready</p>
+
+    <p id="feedback">not logged in</p>
+    <button onclick="login()">Login with Google+</button>
+    <br/><br/>
+    <button onclick="trySilentLogin()">Try silent login with Google+</button>
+    <br/><br/>
+    <button onclick="logout()">Logout</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button onclick="disconnect()">Disconnect</button>
+    <br/><br/>
+  </div>
 </div>
 </body>
 </html>

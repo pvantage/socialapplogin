@@ -26,7 +26,9 @@
     <param name="APP_ID" value="396797113702689" />
     <param name="APP_NAME" value="Bluesails" />
 	</plugin>
-	<plugin name="nl.x-services.plugins.googleplus" spec="1.0.7" source="pgb" />
+	<gap:plugin name="cordova-plugin-googleplus" source="npm">
+	  <param name="REVERSED_CLIENT_ID" value="myreversedclientid" />
+	</gap:plugin>
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

@@ -8,11 +8,19 @@
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
 document.addEventListener("deviceready", facebookConnectPlugin.login, false);
-
-facebookConnectPlugin.login(["public_profile"],
-    fbLoginSuccess,
-    function (error) { alert("" + error) }
-);
+document.addEventListener("deviceready", init, false);
+function init() {
+	document.querySelector("#startfblogin").addEventListener("touchend", startfblogin, false);
+	//resultDiv = document.querySelector("#results");
+}
+function startfblogin()
+{
+	alert('start');
+	facebookConnectPlugin.login(["public_profile"],
+		fbLoginSuccess,
+		function (error) { alert("" + error) }
+	);
+}
 var fbLoginSuccess = function (userData) {
     alert("UserInfo: " + JSON.stringify(userData));
     facebookConnectPlugin.getLoginStatus(
@@ -32,7 +40,7 @@ var fbLoginSuccess = function (userData) {
 </script>
 <body>
 <div class="container maincontainer">
-  <a href="javascript:;">Facebook</a>
+  <a href="javascript:;" id="startfblogin">Facebook</a>
 </div>
 </body>
 </html>

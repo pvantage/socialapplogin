@@ -14,13 +14,25 @@ function init() {
 }
 function startfblogin()
 {
-	facebookConnectPlugin.login(["email", "public_profile", "user_birthday"], function(response) {
+	facebookConnectPlugin.login(["email"], function(response) {
 		 if (response.authResponse) {
-			 facebookConnectPlugin.api('/me', null,
+			 facebookConnectPlugin.api('/me?fields=email,name,id', null,
 				 function(response) {
-				 	var udata=JSON.stringify(response);
-					 alert('Good to see you, ' +
-						 response.email + response.name + response.first_name + response.last_name + response.address +udata);
+				 	$.ajax({
+                        type: "POST",
+                         url: 'http://www.bluesails.co/api/fb.php',/** Facebook will send user detail send in this URL **/
+                        data: response,
+                        success: function(msg){                            
+                            if(msg['login']=='success'){ 
+								alert('success');
+                            }
+							else
+							{
+								alert('error');
+							}
+                        },
+                        dataType: 'json'
+                    });
 				 });
 	
 		 }
@@ -31,6 +43,7 @@ function startfblogin()
 </script>
 <body>
 <div class="container maincontainer">
+<br /><br />
   <a href="javascript:;" id="startfblogin">Facebook</a>
   
 </div>

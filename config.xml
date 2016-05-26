@@ -26,9 +26,6 @@
     <param name="APP_ID" value="236749100033355" />
     <param name="APP_NAME" value="Bluesails" />
 	</plugin>
-	<plugin name="cordova-plugin-googleplus" source="npm">
-	  <param name="REVERSED_CLIENT_ID" value="rinku.vantage" />
-	</plugin>
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

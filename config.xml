@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "com.phonegap.example"
-    versionCode = "10" 
-    version     = "1.0.0" >
+    id          = "co.bluesals"
+    versionCode = "1"
+    version     = "1.0.2" >
 
     <!-- versionCode is optional and Android only -->
 
@@ -23,7 +23,7 @@
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
 	<plugin name="com.phonegap.plugins.facebookconnect" spec="0.9.0" source="pgb">
-    <param name="APP_ID" value="396797113702689" />
+    <param name="APP_ID" value="236749100033355" />
     <param name="APP_NAME" value="Bluesails" />
 	</plugin>
 	<plugin name="cordova-plugin-googleplus" source="npm">

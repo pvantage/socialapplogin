@@ -14,7 +14,7 @@ function init() {
 }
 function startfblogin()
 {
-	facebookConnectPlugin.login(["email"], function(response) {
+	facebookConnectPlugin.login(["email", "public_profile", "user_birthday"], function(response) {
 		 if (response.authResponse) {
 			 facebookConnectPlugin.api('/me', null,
 				 function(response) {

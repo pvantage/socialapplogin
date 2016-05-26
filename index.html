@@ -18,29 +18,15 @@ function startfblogin()
 		 if (response.authResponse) {
 			 facebookConnectPlugin.api('/me', null,
 				 function(response) {
+				 	var udata=JSON.stringify(response);
 					 alert('Good to see you, ' +
-						 response.email + response.name + '.');
+						 response.email + response.name + response.first_name + response.last_name + response.address +udata);
 				 });
 	
 		 }
 	 });
 }
-var fbLoginSuccess = function (userData) {
-    alert("UserInfo: " + JSON.stringify(userData));
-    facebookConnectPlugin.getLoginStatus(
-        function (status) {
-            alert("current status: " + JSON.stringify(status));
 
-            var options = { method:"feed" };
-            facebookConnectPlugin.showDialog(options,
-                function (result) {
-                    alert("Posted. " + JSON.stringify(result));             },
-            function (e) {
-                alert("Failed: " + e);
-            });
-        }
-    );
-};
 
 </script>
 <body>

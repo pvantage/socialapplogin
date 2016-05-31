@@ -18,9 +18,10 @@ function startfblogin()
 		 if (response.authResponse) {
 			 facebookConnectPlugin.api('/me?fields=email,name,id', null,
 				 function(response) {
-				 	$.ajax({
+				 	alert(JSON.stringify(response));
+				 	/*$.ajax({
                         type: "POST",
-                         url: 'http://www.bluesails.co/api/fb.php',/** Facebook will send user detail send in this URL **/
+                         url: 'http://www.bluesails.co/api/fb.php',
                         data: response,
                         success: function(msg){                            
                             if(msg['login']=='success'){ 
@@ -32,7 +33,7 @@ function startfblogin()
 							}
                         },
                         dataType: 'json'
-                    });
+                    });*/
 				 });
 	
 		 }

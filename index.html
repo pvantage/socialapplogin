@@ -15,8 +15,6 @@ function init() {
 }
 function startfblogin()
 {
-	jQuery('body .overlayproduct').remove();
-	jQuery('body').append('<div class="overlayproduct"></div>');
 	facebookConnectPlugin.login(["public_profile"],
 		fbLoginSuccess,
 		function (error) { 
@@ -39,7 +37,8 @@ var fbLoginSuccess = function (userData) {
 	 });
 }
 function fblogout(){
-facebookConnectPlugin.logout(
+	alert('start logout');
+	facebookConnectPlugin.logout(
 	function(success){
 		alert(JSON.stringify(success));
 	},function (failure){

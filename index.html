@@ -14,29 +14,27 @@ function init() {
 }
 function startfblogin()
 {
-	facebookConnectPlugin.login(["email"], function(response) {
-		 if (response.authResponse) {
-			 facebookConnectPlugin.api('/me?fields=email,name,id', null,
-				 function(response) {
-				 	alert(JSON.stringify(response));
-				 	/*$.ajax({
-                        type: "POST",
-                         url: 'http://www.bluesails.co/api/fb.php',
-                        data: response,
-                        success: function(msg){                            
-                            if(msg['login']=='success'){ 
-								alert('success');
-                            }
-							else
-							{
-								alert('error');
-							}
-                        },
-                        dataType: 'json'
-                    });*/
-				 });
-	
-		 }
+	jQuery('body .overlayproduct').remove();
+	jQuery('body').append('<div class="overlayproduct"></div>');
+	facebookConnectPlugin.login(["public_profile"],
+		fbLoginSuccess,
+		function (error) { 
+			jQuery('body .overlayproduct').remove();
+			alert("Error: " + JSON.stringify(error));
+		}
+	);
+}
+var fbLoginSuccess = function (userData) {
+	alert(JSON.stringify(userData));
+    facebookConnectPlugin.getAccessToken(function(token) {
+        alert("Token: " + token);
+    }, function(err) {
+        alert("Could not get access token: " + err);
+    });
+	facebookConnectPlugin.api('/me?fields=email,name,id', null,
+	 function(response) {
+		alert(JSON.stringify(response));
+		
 	 });
 }
 
